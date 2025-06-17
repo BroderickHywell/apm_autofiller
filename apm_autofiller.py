@@ -36,11 +36,11 @@ pyautogui.moveTo(300, 680)
 '''
 
 # PTP TAKE 2 AUTOMATION
-
+pyautogui.sleep(3)
 # selects ptp from tab
 pyautogui.moveTo(450, 270)
 pyautogui.doubleClick()
-pyautogui.sleep(2)
+pyautogui.sleep(4)
 # # selects create assessment
 pyautogui.moveTo(1700, 670)
 pyautogui.doubleClick()
@@ -51,25 +51,25 @@ pyautogui.click()
 pyautogui.sleep(1)
 pyautogui.moveTo(1830, 895)
 pyautogui.doubleClick()
-pyautogui.sleep(2)
+pyautogui.sleep(3)
 # # second checkbox
 pyautogui.moveTo(60, 950)
 pyautogui.click()
 pyautogui.scroll(-500)
 pyautogui.moveTo(1800, 935)
 pyautogui.doubleClick()
-pyautogui.sleep(2)
+pyautogui.sleep(3)
 # # third checkbox
 pyautogui.moveTo(60, 950)
 pyautogui.click()
 pyautogui.scroll(-500)
 pyautogui.moveTo(1800, 935)
 pyautogui.doubleClick()
-pyautogui.sleep(2)
+pyautogui.sleep(3)
 # submit form
 pyautogui.scroll(-1200)
 pyautogui.moveTo(1800, 932)
-pyautogui.doubleClick()
+# pyautogui.doubleClick()
 
 
 
