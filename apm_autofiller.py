@@ -3,7 +3,11 @@ screenWidth, screenHeight = pyautogui.size() # Get the size of the primary monit
 # the laptops we use have a resolution of 1920 x 1080
 
 currentMouseX, currentMouseY = pyautogui.position() # Get the XY position of the mouse.
-
+dft_arr = [
+    'PRTR.TOD.232248843Q',
+    'PRTR.TOD.2044022073Q',
+    'PRTR.TOD.232248843Q'
+]
 # pyautogui.moveTo(100, 150) # Move the mouse to XY coordinates.
 
 # pyautogui.click()          # Click the mouse.
@@ -68,6 +72,9 @@ def record_view_filler_func():
     user_input = input("---\nfilm change[1] \ndryer daily[2] \nfixation[3] \n---\n")
     if user_input == '1':
         dft_index = input('---\nWhich DFT?[1-3]\n---\n')
+        if int(dft_index) > 3 or int(dft_index) < 1:
+            print('invalid input')
+            record_view_filler_func() #brings user back to beginning of function if an invalid input is entered
         username = input('---\nWhat is your username?\n---\n')
         film_change_record_filler_func(dft_index,username)
         print(dft_index)
@@ -80,7 +87,8 @@ def record_view_filler_func():
         record_view_filler_func() #recurses function until user selects valid choice
 
 def film_change_record_filler_func(dft_index,username):
-    print('filling out film change records')
+    #run on screen calls with data
+    print(f'dft:{dft_arr[int(dft_index)-1]}, username:{username}')
     
 def take_two_autofiller():
     pyautogui.sleep(2)
