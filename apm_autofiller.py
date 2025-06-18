@@ -27,16 +27,12 @@ currentMouseX, currentMouseY = pyautogui.position() # Get the XY position of the
 
 
 '''
-#RECORD VIEW AUTOMATION
+#RECORD VIEW GUIDANCE
 pyautogui.sleep(2)
 pyautogui.moveTo(300, 650)
 pyautogui.doubleClick()
 pyautogui.write('Hello world!')
 pyautogui.moveTo(300, 680)
-
-
-def my_function():
-  print("Hello from a function")
 
 THINGS TO IMPLEMENT
 -time checker
@@ -44,21 +40,20 @@ THINGS TO IMPLEMENT
 '''
 
 def autofiller():
-    user_input = input("Hej! PTP[1] or RecordFiller[2]?")
+    user_input = input("---\nHej! \nPTP[1] \nRecordFiller[2]\n---\n")
     if user_input == '1':
-        print("ptp")
-        ptp_filler_func()
+        ptp_filler_func() #runs ptp function
     elif user_input == '2':
-        print('recordview')
+        record_view_filler_func()
     else:
         print('Invalid input')
         autofiller() #recurses function until user selects valid choice
 
 
 def ptp_filler_func():
-    user_input = input("Take two[1] \nElectrical Troubleshooting[2] \nYard[3] \nPower tools[4]")
+    user_input = input("---\nTake two[1] \nElectrical Troubleshooting[2] \nYard[3] \nPower tools[4]\n---\n")
     if user_input == '1':
-        print('take two')
+        take_two_autofiller()
     elif user_input == '2':
         print('electrical troubleshooting')
     elif user_input == '3':
@@ -68,46 +63,60 @@ def ptp_filler_func():
     else:
         print('invald input')
         ptp_filler_func() # recurses function until user selects valid choice
+
+def record_view_filler_func():
+    user_input = input("---\nfilm change[1] \ndryer daily[2] \nfixation[3] \n---\n")
+    if user_input == '1':
+        dft_index = input('---\nWhich DFT?[1-3]\n---\n')
+        username = input('---\nWhat is your username?\n---\n')
+        film_change_record_filler_func(dft_index,username)
+        print(dft_index)
+    elif user_input == '2':
+        print('dryer daily')
+    elif user_input == '3':
+        print('fixation')
+    else:
+        print('invalid input')
+        record_view_filler_func() #recurses function until user selects valid choice
+
+def film_change_record_filler_func(dft_index,username):
+    print('filling out film change records')
     
+def take_two_autofiller():
+    pyautogui.sleep(2)
+    # selects ptp from tab
+    pyautogui.moveTo(450, 270)
+    pyautogui.doubleClick()
+    pyautogui.sleep(6) # this one goes longer than normal because sometimes there are delays with the network
+    # # selects create assessment
+    pyautogui.moveTo(1700, 670)
+    pyautogui.doubleClick()
+    pyautogui.sleep(2)
+    # # first checkbox
+    pyautogui.moveTo(60, 870)
+    pyautogui.click()
+    pyautogui.sleep(1)
+    pyautogui.moveTo(1830, 895)
+    pyautogui.doubleClick()
+    pyautogui.sleep(3)
+    # # second checkbox
+    pyautogui.moveTo(60, 950)
+    pyautogui.click()
+    pyautogui.scroll(-500)
+    pyautogui.moveTo(1800, 935)
+    pyautogui.doubleClick()
+    pyautogui.sleep(3)
+    # # third checkbox
+    pyautogui.moveTo(60, 950)
+    pyautogui.click()
+    pyautogui.scroll(-500)
+    pyautogui.moveTo(1800, 935)
+    pyautogui.doubleClick()
+    pyautogui.sleep(3)
+    # submit form
+    pyautogui.scroll(-1200)
+    pyautogui.moveTo(1800, 932)
+    # pyautogui.doubleClick()
 
 
 autofiller()
-
-
-'''
-# PTP TAKE 2 AUTOMATION
-pyautogui.sleep(1)
-# selects ptp from tab
-pyautogui.moveTo(450, 270)
-pyautogui.doubleClick()
-pyautogui.sleep(6) # this one goes longer than normal because sometimes there are delays with the network
-# # selects create assessment
-pyautogui.moveTo(1700, 670)
-pyautogui.doubleClick()
-pyautogui.sleep(2)
-# # first checkbox
-pyautogui.moveTo(60, 870)
-pyautogui.click()
-pyautogui.sleep(1)
-pyautogui.moveTo(1830, 895)
-pyautogui.doubleClick()
-pyautogui.sleep(3)
-# # second checkbox
-pyautogui.moveTo(60, 950)
-pyautogui.click()
-pyautogui.scroll(-500)
-pyautogui.moveTo(1800, 935)
-pyautogui.doubleClick()
-pyautogui.sleep(3)
-# # third checkbox
-pyautogui.moveTo(60, 950)
-pyautogui.click()
-pyautogui.scroll(-500)
-pyautogui.moveTo(1800, 935)
-pyautogui.doubleClick()
-pyautogui.sleep(3)
-# submit form
-pyautogui.scroll(-1200)
-pyautogui.moveTo(1800, 932)
-pyautogui.doubleClick()
-'''
