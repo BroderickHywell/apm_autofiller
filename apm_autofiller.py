@@ -26,21 +26,61 @@ currentMouseX, currentMouseY = pyautogui.position() # Get the XY position of the
 # pyautogui.doubleClick()      Double click the mouse.
 
 
-# record view automation
 '''
+#RECORD VIEW AUTOMATION
 pyautogui.sleep(2)
 pyautogui.moveTo(300, 650)
 pyautogui.doubleClick()
 pyautogui.write('Hello world!')
 pyautogui.moveTo(300, 680)
+
+
+def my_function():
+  print("Hello from a function")
+
+THINGS TO IMPLEMENT
+-time checker
+-reresher
 '''
 
+def autofiller():
+    user_input = input("Hej! PTP[1] or RecordFiller[2]?")
+    if user_input == '1':
+        print("ptp")
+        ptp_filler_func()
+    elif user_input == '2':
+        print('recordview')
+    else:
+        print('Invalid input')
+        autofiller() #recurses function until user selects valid choice
+
+
+def ptp_filler_func():
+    user_input = input("Take two[1] \nElectrical Troubleshooting[2] \nYard[3] \nPower tools[4]")
+    if user_input == '1':
+        print('take two')
+    elif user_input == '2':
+        print('electrical troubleshooting')
+    elif user_input == '3':
+        print('yard')
+    elif user_input == '4':
+        print('power tools')   
+    else:
+        print('invald input')
+        ptp_filler_func() # recurses function until user selects valid choice
+    
+
+
+autofiller()
+
+
+'''
 # PTP TAKE 2 AUTOMATION
-pyautogui.sleep(3)
+pyautogui.sleep(1)
 # selects ptp from tab
 pyautogui.moveTo(450, 270)
 pyautogui.doubleClick()
-pyautogui.sleep(4)
+pyautogui.sleep(6) # this one goes longer than normal because sometimes there are delays with the network
 # # selects create assessment
 pyautogui.moveTo(1700, 670)
 pyautogui.doubleClick()
@@ -69,7 +109,5 @@ pyautogui.sleep(3)
 # submit form
 pyautogui.scroll(-1200)
 pyautogui.moveTo(1800, 932)
-# pyautogui.doubleClick()
-
-
-
+pyautogui.doubleClick()
+'''
