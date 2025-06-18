@@ -8,6 +8,10 @@ dft_arr = [
     'PRTR.TOD.2044022073Q',
     'PRTR.TOD.232248843Q'
 ]
+
+closing_comments_arr = [
+    'Went over to machine after I got the call and filled out the PTP. Then I got some new film and replaced it and made sure the machine was running properly. Handed it back to ops afterwards.'
+]
 # pyautogui.moveTo(100, 150) # Move the mouse to XY coordinates.
 
 # pyautogui.click()          # Click the mouse.
@@ -31,16 +35,10 @@ dft_arr = [
 
 
 '''
-#RECORD VIEW GUIDANCE
-pyautogui.sleep(2)
-pyautogui.moveTo(300, 650)
-pyautogui.doubleClick()
-pyautogui.write('Hello world!')
-pyautogui.moveTo(300, 680)
-
 THINGS TO IMPLEMENT
 -time checker
 -reresher
+-connections closer
 '''
 
 def autofiller():
@@ -76,7 +74,8 @@ def record_view_filler_func():
             print('invalid input')
             record_view_filler_func() #brings user back to beginning of function if an invalid input is entered
         username = input('---\nWhat is your username?\n---\n')
-        film_change_record_filler_func(dft_index,username)
+        downtime = input('---\nWhat is the downtime?\n---\n')
+        film_change_record_filler_func(dft_index,username,downtime)
         print(dft_index)
     elif user_input == '2':
         print('dryer daily')
@@ -86,10 +85,109 @@ def record_view_filler_func():
         print('invalid input')
         record_view_filler_func() #recurses function until user selects valid choice
 
-def film_change_record_filler_func(dft_index,username):
+def film_change_record_filler_func(dft_index,username,downtime):
     #run on screen calls with data
-    print(f'dft:{dft_arr[int(dft_index)-1]}, username:{username}')
-    
+    # print(f'dft:{dft_arr[int(dft_index)-1]}, username:{username}')
+
+    #remove whatever is in equipment and add in the dft data, then excuse the warranty screen
+    # pyautogui.sleep(4)
+    pyautogui.moveTo(150, 330)
+    pyautogui.click()
+    pyautogui.press('backspace')
+    pyautogui.write(dft_arr[int(dft_index) - 1])
+    pyautogui.moveTo(50, 330)
+    pyautogui.doubleClick()
+    # pyautogui.sleep(4)
+    pyautogui.moveTo(950, 600)
+    pyautogui.doubleClick()
+    pyautogui.sleep(0.5)
+
+    #change status to in progress
+    pyautogui.moveTo(900, 390)
+    pyautogui.doubleClick()
+    pyautogui.write('In progress')
+    pyautogui.press('enter')
+
+    #change WO execution to EXDN
+    pyautogui.moveTo(850, 440)
+    pyautogui.doubleClick()
+    pyautogui.write('EXDN')
+    pyautogui.press('enter')
+
+    #change safety related to no
+    pyautogui.moveTo(850, 460)
+    pyautogui.doubleClick()
+    pyautogui.write('NO')
+    pyautogui.press('enter')
+
+    #add closing comments
+    pyautogui.moveTo(150, 660)
+    pyautogui.doubleClick()
+    pyautogui.write(closing_comments_arr[0])
+
+    #problem code MECH/HARDWAR/MISSING
+    pyautogui.moveTo(150, 680)
+    pyautogui.click()
+    pyautogui.write('MECH')
+    pyautogui.moveTo(150, 710)
+    pyautogui.click()
+    pyautogui.write('HARDWAR')
+    pyautogui.moveTo(150, 740)
+    pyautogui.click()
+    pyautogui.write('MISSING')
+
+    #downtime
+    pyautogui.moveTo(780, 605)
+    pyautogui.click()
+    pyautogui.moveTo(780, 635)
+    pyautogui.doubleClick()
+    pyautogui.write('OTHER')
+    pyautogui.moveTo(780, 665)
+    pyautogui.doubleClick()
+    pyautogui.write('downtime')
+    pyautogui.moveTo(780, 710)
+    pyautogui.doubleClick()
+    pyautogui.write(downtime)
+
+    #username
+    pyautogui.moveTo(1480, 605)
+    pyautogui.click()
+    pyautogui.write(username)
+    pyautogui.moveTo(1180, 605)
+    pyautogui.click()
+
+    #checklist
+    # pyautogui.moveTo(990, 450)
+    # pyautogui.click()
+    # pyautogui.moveTo(990, 475)
+    # pyautogui.click()
+
+    #back to record view
+    # pyautogui.moveTo(50,280)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#tester function
+# film_change_record_filler_func(1,'bihowell')
+
 def take_two_autofiller():
     pyautogui.sleep(2)
     # selects ptp from tab
@@ -124,7 +222,7 @@ def take_two_autofiller():
     # submit form
     pyautogui.scroll(-1200)
     pyautogui.moveTo(1800, 932)
-    # pyautogui.doubleClick()
+    pyautogui.doubleClick()
 
 
 autofiller()
